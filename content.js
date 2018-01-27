@@ -3,10 +3,11 @@ $(document).ready(function () {
 	console.log("Loaded Page")
 
 	$('img').each(function () {
+    var image = this;
 		console.log("found an image")
 		if (!$(this).attr('alt')) {
 			console.log("no alt!")
-       sourceImageUrl = $(this).attr('src');
+      sourceImageUrl = $(this).attr('src');
 
        // Replace the subscriptionKey string value with your valid subscription key.
        var subscriptionKey = "6d4d15f30dcc42ba81e90db3b638b2ae";
@@ -51,21 +52,17 @@ $(document).ready(function () {
        .done(function(data) {
            // Show formatted JSON on webpage.
            //$("#responseTextArea").val(JSON.stringify(data, null, 2));
-
            var obj = JSON.parse(JSON.stringify(data, null, 2));
            console.log(obj.description.captions[0].text);
-
-           //console.log(JSON.stringify(data, null, 2));
+           $(image).attr('alt', obj.description.captions[0].text);
        })
 
        .fail(function(jqXHR, textStatus, errorThrown) {
            // Display error message.
            var errorString = (errorThrown === "") ? "Error. " : errorThrown + " (" + jqXHR.status + "): ";
            errorString += (jqXHR.responseText === "") ? "" : jQuery.parseJSON(jqXHR.responseText).message;
-           alert(errorString);
        });
 
 		}
 	})
-
 })
