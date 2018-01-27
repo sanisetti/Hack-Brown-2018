@@ -1,13 +1,19 @@
 {
   "manifest_version" : 2,
-  "name": "To be decided",
+  "name": "Pupil",
+  "description": "todo",
   "version" : "0.1",
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/",
+  ],
   "content_scripts": [
   {
     "matches": [
       "<all_urls>"
     ],
-    "js": ["https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js", "content.js"]
+    "js": ["jquery.js", "content.js"],
+    "run_at": "document_start"
   }
 ]
 }
