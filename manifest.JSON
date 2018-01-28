@@ -12,7 +12,9 @@
     "48": "img/logo_48.png",
     "128": "img/logo_128.png" },
   "permissions": [
+    "storage",
     "activeTab",
+    "tabs",
     "https://ajax.googleapis.com/"
   ],
   "content_scripts": [
