@@ -9,7 +9,7 @@ $(document).ready(function () {
 				return;
 			}
 			var image = this;
-			console.log("found an image")
+			console.log($(this).attr('src'))
 			if (!$(this).attr('alt')) {
 				console.log("no alt!")
 				numRequests = numRequests + 1;
@@ -69,7 +69,6 @@ $(document).ready(function () {
 						 errorString += (jqXHR.responseText === "") ? "" : jQuery.parseJSON(jqXHR.responseText).message;
 						 console.log(errorString);
 				 });
-				 console.log('changed alt!')
 			}
 			else {
 				if($(this).attr('alt').split(" ").length <= 2){
