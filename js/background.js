@@ -16,10 +16,18 @@ chrome.storage.onChanged.addListener(function(changes, namespace) {
 
 });
 
-chrome.storage.sync.set({'pupilExtensionActive': true}, function () {
-	console.log("data saved");
-	isOn = true
-});
+chrome.storage.sync.get("pupilExtensionActive", function(response) {
+	console.log(response)
+	bg = document.getElementById("background");
+		if (response.pupilExtensionActive === undefined) {
+			chrome.storage.sync.set({'pupilExtensionActive': true}, function () {
+			console.log("data saved");
+			isOn = true
+		});
+	}
+})
+
+
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
