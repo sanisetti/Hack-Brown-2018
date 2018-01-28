@@ -24,6 +24,8 @@
     ],
     "js": ["jquery.js", "content.js"],
     "run_at": "document_start"
+  }],
+  "background": {
+    "scripts": ["js/background.js"]
   }
-]
 }

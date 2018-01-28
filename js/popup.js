@@ -1,11 +1,13 @@
-var toggleOn = false
 console.log("javascript loaded")
+var toggleOn
 
 chrome.storage.sync.get("pupilExtensionActive", function(response) {
-	console.log(response.pupilExtensionActive)
+	console.log(response)
 	bg = document.getElementById("background");
-	if (!(response.pupilExtensionActive)) {
-		toggleOn = false
+	if (response.pupilExtensionActive === undefined) {
+		toggleOn = true;
+	} else if (!(response.pupilExtensionActive)) {
+		toggleOn = false;
 		if (!(background.classList.contains("off"))) {
 			bg.classList.add('off');
 		}
@@ -13,7 +15,7 @@ chrome.storage.sync.get("pupilExtensionActive", function(response) {
 			power.classList.add("down");
 		} 
 	} else {
-		toggleOn = true
+		toggleOn = true;
 	}
 })
 
@@ -25,7 +27,7 @@ document.getElementById("background").addEventListener("click", function () {
 
 		// save this setting in browser storage
 		chrome.storage.sync.set({'pupilExtensionActive': true}, function () {
-			
+			console.log("data saved");
 		});
 
 	} else {
@@ -46,23 +48,12 @@ document.getElementById("background").addEventListener("click", function () {
 	}
 })
 
-chrome.storage.onChanged.addListener(function(changes, namespace) {
-	for (key in changes) {
-	  var storageChange = changes[key];
-	  console.log('Storage key "%s" in namespace "%s" changed. ' +
-	              'Old value was "%s", new value is "%s".',
-	              key,
-	              namespace,
-	              storageChange.oldValue,
-	              storageChange.newValue);
-	}
-});
-
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-    if (request.startRequest == true)
+    if (request.startRequest == "true")
       sendResponse({startResponse: toggleOn});
   });
+

@@ -1,7 +1,20 @@
 $(document).ready(function () {
 
+	console.log("requesting start")
+
+	chrome.runtime.sendMessage({status: "query"}, function(response) {
+  		if (response.status === true) {
+  			updateImages();
+  		} else {
+  			console.log("Pupil extension turned off.");
+  		}
+	});
+})
+
+function updateImages() {
 	console.log("Loaded Page")
-  var numRequests = 0;
+	var numRequests = 0;
+
 	$('*').each(function () {
 		if ($(this).is('img')) {
 			console.log(numRequests);
@@ -134,4 +147,5 @@ $(document).ready(function () {
 			}
 		}
 	})
-})
+
+}
