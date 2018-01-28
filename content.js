@@ -27,7 +27,7 @@ function updateImages() {
 				console.log("no alt!")
 				numRequests = numRequests + 1;
 				sourceImageUrl = $(this).attr('src');
-
+				console.log(sourceImageUrl);
 				 // Replace the subscriptionKey string value with your valid subscription key.
 				 var subscriptionKey = "6d4d15f30dcc42ba81e90db3b638b2ae";
 
@@ -87,7 +87,7 @@ function updateImages() {
 				if($(this).attr('alt').split(" ").length <= 2){
 					numRequests = numRequests + 1;
 					sourceImageUrl = $(this).attr('src');
-
+					console.log(sourceImageUrl);
 					 // Replace the subscriptionKey string value with your valid subscription key.
 					 var subscriptionKey = "6d4d15f30dcc42ba81e90db3b638b2ae";
 
