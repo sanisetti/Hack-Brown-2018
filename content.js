@@ -3,7 +3,6 @@ $(document).ready(function () {
 	console.log("Loaded Page")
   var numRequests = 0;
 	$('*').each(function () {
-		console.log("HI")
 		if ($(this).is('img')) {
 			console.log(numRequests);
 			if(numRequests >= 5){
@@ -70,7 +69,7 @@ $(document).ready(function () {
 						 errorString += (jqXHR.responseText === "") ? "" : jQuery.parseJSON(jqXHR.responseText).message;
 						 console.log(errorString);
 				 });
-
+				 console.log('changed alt!')
 			}
 			else {
 				if($(this).attr('alt').split(" ").length <= 2){
